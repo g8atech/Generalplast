@@ -2,6 +2,7 @@
 import site from "../config/site.json";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
 import "../styles/global.css";
 
 interface Props {
@@ -56,6 +57,7 @@ const org = {
     <meta property="og:image" content={new URL("/og.png", site.site.url).href} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="author" content={site.brand.legalName} />
+    {site.verification.google && <meta name="google-site-verification" content={site.verification.google} />}
 {
       /* I font sono serviti dal dominio: nessuna richiesta a terzi,
          quindi niente trasferimento dell'IP del visitatore. */
@@ -71,5 +73,10 @@ const org = {
       <slot />
       <Footer />
     </div>
+    {
+      /* Statistiche senza cookie, servite dal dominio stesso: non accedono
+         alla memoria del browser e non richiedono consenso. */
+    }
+    {site.analytics.vercel && <Analytics />}
   </body>
 </html>

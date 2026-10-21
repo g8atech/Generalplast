@@ -47,6 +47,14 @@
   "nav": {
     "catalogUrl": "https://anyflip.com/rswwi/uyga"
   },
+  "analytics": {
+    "comment": "Statistiche senza cookie, servite dal dominio: non richiedono consenso e non fanno scattare l'obbligo di banner. Per attivare GA4 o Clarity su un sito serve prima un banner con blocco preventivo: vedere README.",
+    "vercel": true
+  },
+  "verification": {
+    "comment": "Preferire la verifica via record TXT sul DNS. Questo meta tag serve solo se il DNS non è accessibile.",
+    "google": ""
+  },
   "privacy": {
     "updatedAt": "21 ottobre 2026",
     "retentionMonths": 24,

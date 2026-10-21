@@ -68,6 +68,34 @@ accorgersene.
 Il consenso privacy è obbligatorio e il campo `botcheck` è una trappola
 anti-spam.
 
+## Statistiche, Search Console e cookie
+
+Scelta di base del template: **statistiche senza cookie** (Vercel Web Analytics,
+servito dal dominio stesso). Niente consenso da raccogliere, niente banner,
+niente cookie policy — e i dati si raccolgono dal 100% dei visitatori invece
+che dalla sola quota che accetta.
+
+**Search Console** non richiede codice: si verifica con un record TXT sul DNS.
+Solo se il DNS non è raggiungibile si usa `verification.google` in
+`src/config/site.json`, che emette il meta tag.
+
+**Google Analytics e Microsoft Clarity non vanno aggiunti così come sono.**
+Scrivono cookie e sono strumenti di tracciamento: le linee guida del Garante
+impongono il blocco preventivo degli script e la raccolta del consenso prima
+che partano. Aggiungerli significa mettere in conto anche:
+
+- un banner con rifiuto allo stesso livello dell'accettazione e nessuna casella
+  pre-spuntata;
+- gli script caricati **solo dopo** il consenso, mai prima;
+- una cookie policy e l'aggiornamento dell'informativa;
+- per Clarity, la verifica del mascheramento dei campi del modulo, che registra
+  le sessioni.
+
+Vanno riservati ai siti dove servono davvero — tipicamente quelli che fanno
+campagne a pagamento e hanno bisogno di importare le conversioni. Quando
+serviranno, il banner va costruito dentro questo template una volta sola, non
+comprato per dominio.
+
 ## Pubblicazione su Vercel
 
 Importa il repository: Astro viene riconosciuto da solo (`npm run build`,

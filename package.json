@@ -13,12 +13,13 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^5.18.2",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "pixelmatch": "^7.1.0",
     "playwright-core": "^1.56.1",
-    "pngjs": "^7.0.0",
-    "pixelmatch": "^7.1.0"
+    "pngjs": "^7.0.0"
   }
 }
