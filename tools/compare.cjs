@@ -6,7 +6,9 @@ const path = require("path");
 
 const DIST = path.join(__dirname, "..", "dist");
 const OUT = process.env.OUT || "/tmp/cmp";
-const LIVE = "https://plastic-reimagined-modern.vercel.app";
+const LIVE = process.env.LIVE || "https://plastic-reimagined-modern.vercel.app";
+// Con NEW si confronta un deploy remoto invece della build locale.
+const NEW = process.env.NEW || null;
 const PORT = 4399;
 
 const ROUTES = ["/", "/lavorazione-produzione", "/stampaggio-conto-terzi", "/privacy"];
@@ -95,7 +97,7 @@ async function shoot(page, url, file) {
       const slug = route === "/" ? "home" : route.slice(1);
       const key = `${slug}.${vp.name}`;
       const a = await shoot(page, LIVE + route, `${OUT}/${key}.live.png`);
-      const b = await shoot(page, `http://localhost:${PORT}${route}`, `${OUT}/${key}.new.png`);
+      const b = await shoot(page, (NEW || `http://localhost:${PORT}`) + route, `${OUT}/${key}.new.png`);
       GIF_BOXES[key] = [...a, ...b];
       console.log(`ok ${key}  (aree gif escluse: ${a.length})`);
     }
