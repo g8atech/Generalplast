@@ -1,0 +1,224 @@
+---
+import Base from "../layouts/Base.astro";
+import site from "../config/site.json";
+
+const { brand, contact, privacy } = site;
+---
+
+<Base
+  title={`Informativa sulla privacy | ${brand.legalName}`}
+  description={`Come ${brand.legalName} tratta i dati personali raccolti tramite il sito e il modulo contatti, ai sensi del Regolamento UE 2016/679.`}
+>
+<main class="container-page max-w-3xl pb-24 pt-36">
+  <h1 class="text-4xl font-extrabold uppercase">Informativa sulla privacy</h1>
+  <p class="mt-4 text-sm text-muted-foreground">
+    Ultimo aggiornamento: {privacy.updatedAt}
+  </p>
+
+  <div class="mt-10 space-y-10 leading-relaxed text-muted-foreground">
+    <p class="text-lg text-foreground/85">
+      Questa informativa descrive come {brand.legalName} tratta i dati personali
+      delle persone che visitano questo sito o che ci scrivono attraverso il
+      modulo contatti, ai sensi degli articoli 13 e 14 del Regolamento UE
+      2016/679 (GDPR).
+    </p>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">1. Titolare del trattamento</h2>
+      <p class="mt-4">
+        Il titolare del trattamento è {brand.legalName}, {contact.addressLine},
+        P.IVA {contact.vat}.
+      </p>
+      <p class="mt-3">
+        Per qualsiasi questione relativa ai dati personali è possibile scrivere a
+        <a href={`mailto:${contact.email}`} class="font-semibold text-primary hover:underline">{contact.email}</a>
+        o telefonare al <a href={contact.phoneHref} class="font-semibold text-primary hover:underline">{contact.phone}</a>.
+      </p>
+      <p class="mt-3">
+        Non è stato nominato un Responsabile della protezione dei dati, non
+        ricorrendo i casi previsti dall'articolo 37 del Regolamento.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">2. Quali dati raccogliamo</h2>
+
+      <h3 class="mt-5 font-display text-sm font-bold uppercase tracking-[0.14em] text-foreground">
+        Dati che ci fornisci tu
+      </h3>
+      <p class="mt-3">
+        Compilando il modulo contatti ci comunichi nome, indirizzo email e, se
+        scegli di indicarli, azienda e numero di telefono, insieme al testo del
+        messaggio. Ti chiediamo di non inserire nel messaggio dati che non siano
+        necessari alla richiesta, in particolare dati che rivelino lo stato di
+        salute, convinzioni religiose o politiche o altre categorie particolari
+        di dati.
+      </p>
+
+      <h3 class="mt-6 font-display text-sm font-bold uppercase tracking-[0.14em] text-foreground">
+        Dati raccolti automaticamente
+      </h3>
+      <p class="mt-3">
+        Come ogni sito web, il server che ospita queste pagine registra i dati
+        tecnici necessari a consegnartele e a mantenerle sicure: indirizzo IP,
+        data e ora della richiesta, pagina richiesta, tipo di browser e sistema
+        operativo. Questi registri servono a far funzionare il sito e a
+        individuare abusi o attacchi, non vengono usati per profilarti e non
+        sono associati alla tua identità.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">3. Cookie e strumenti di tracciamento</h2>
+      <p class="mt-3">
+        <strong class="text-foreground">Questo sito non utilizza cookie</strong>,
+        né di profilazione né tecnici, e non impiega strumenti di analisi
+        statistica, pixel pubblicitari o tecnologie di tracciamento. Non
+        conserva informazioni nella memoria del tuo browser e non carica
+        contenuti da server di terze parti: anche i caratteri tipografici sono
+        serviti direttamente da questo dominio, così che il tuo indirizzo IP non
+        venga comunicato ad altri fornitori durante la semplice navigazione.
+      </p>
+      <p class="mt-3">
+        Per questo motivo non ti viene chiesto alcun consenso all'ingresso nel
+        sito: non c'è nulla da autorizzare.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">4. Perché trattiamo i dati e su quale base</h2>
+      <p class="mt-3">
+        I dati del modulo contatti sono trattati <strong class="text-foreground">per rispondere alla tua
+        richiesta</strong> di informazioni o di preventivo e per gli eventuali
+        contatti successivi connessi a quella richiesta. La base giuridica è
+        l'esecuzione di misure precontrattuali adottate su tua richiesta
+        (articolo 6, paragrafo 1, lettera b del GDPR).
+      </p>
+      <p class="mt-3">
+        I registri tecnici del server sono trattati sulla base del
+        <strong class="text-foreground">legittimo interesse</strong> del titolare a erogare il servizio in
+        modo sicuro e funzionante (articolo 6, paragrafo 1, lettera f).
+      </p>
+      <p class="mt-3">
+        Non utilizziamo i tuoi dati per invii commerciali o newsletter. Qualora
+        in futuro intendessimo farlo, te lo chiederemmo con una richiesta di
+        consenso separata, liberamente revocabile.
+      </p>
+      <p class="mt-3">
+        Il conferimento dei dati contrassegnati come obbligatori nel modulo è
+        necessario per poterti rispondere: senza di essi non possiamo dare
+        seguito alla richiesta. Gli altri campi sono facoltativi.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">5. Chi può accedere ai dati</h2>
+      <p class="mt-3">
+        I dati sono trattati dal personale autorizzato del titolare e dai
+        fornitori che ci assistono nella gestione del sito, nominati
+        responsabili del trattamento ai sensi dell'articolo 28 del Regolamento:
+      </p>
+      <ul class="mt-5 space-y-4">
+        {privacy.processors.map((p) => (
+          <li class="rounded-sm border border-border p-4">
+            <p class="font-display text-sm font-bold uppercase tracking-[0.1em] text-foreground">{p.name}</p>
+            <p class="mt-1 text-sm">{p.role}</p>
+            <p class="mt-1 text-sm">Sede e infrastruttura: {p.country}</p>
+            <p class="mt-1 text-sm">{p.note}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-5">
+        I dati non sono diffusi né ceduti a terzi per finalità commerciali o di
+        marketing. Possono essere comunicati ad autorità pubbliche quando la
+        legge lo imponga.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">6. Trasferimenti fuori dall'Unione europea</h2>
+      <p class="mt-3">
+        Alcuni dei fornitori sopra indicati hanno sede o infrastrutture fuori
+        dallo Spazio economico europeo. In particolare, i messaggi inviati dal
+        modulo contatti sono gestiti da un fornitore con sede in India, paese
+        per il quale la Commissione europea non ha adottato una decisione di
+        adeguatezza.
+      </p>
+      <p class="mt-3">
+        Il trasferimento avviene quindi sulla base delle
+        <strong class="text-foreground">Clausole Contrattuali Tipo</strong> approvate dalla Commissione
+        europea, incorporate nell'accordo sul trattamento dei dati sottoscritto
+        con il fornitore, insieme alle misure di sicurezza da esso previste
+        (cifratura dei dati in transito e a riposo, controllo degli accessi,
+        conservazione limitata nel tempo).
+      </p>
+      <p class="mt-3">
+        Puoi richiedere al titolare copia delle garanzie adottate scrivendo ai
+        recapiti indicati al punto 1.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">7. Per quanto tempo conserviamo i dati</h2>
+      <p class="mt-3">
+        Le richieste ricevute tramite il modulo sono conservate per il tempo
+        necessario a gestirle e per il periodo in cui può essere utile
+        ricostruire i contatti intercorsi, e comunque non oltre
+        <strong class="text-foreground">{privacy.retentionMonths} mesi</strong> dall'invio, salvo che il
+        rapporto prosegua con un ordine o un contratto: in quel caso si
+        applicano i termini di conservazione previsti dalla normativa civilistica
+        e fiscale.
+      </p>
+      <p class="mt-3">
+        I registri tecnici del server sono conservati per un periodo limitato,
+        definito dal fornitore di hosting, e poi cancellati automaticamente.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">8. I tuoi diritti</h2>
+      <p class="mt-3">
+        In qualsiasi momento puoi chiedere al titolare di:
+      </p>
+      <ul class="mt-4 list-disc space-y-2 pl-5">
+        <li>sapere quali tuoi dati trattiamo e ottenerne copia (accesso, art. 15);</li>
+        <li>correggere dati inesatti o incompleti (rettifica, art. 16);</li>
+        <li>cancellare i dati quando non sono più necessari (art. 17);</li>
+        <li>limitare il trattamento nei casi previsti (art. 18);</li>
+        <li>ricevere i dati in formato leggibile da dispositivo automatico (portabilità, art. 20);</li>
+        <li>opporti al trattamento fondato sul legittimo interesse (art. 21).</li>
+      </ul>
+      <p class="mt-4">
+        Per esercitarli basta scrivere a
+        <a href={`mailto:${contact.email}`} class="font-semibold text-primary hover:underline">{contact.email}</a>.
+        Risponderemo senza ingiustificato ritardo e comunque entro un mese dalla
+        richiesta. L'esercizio dei diritti è gratuito.
+      </p>
+      <p class="mt-3">
+        Se ritieni che il trattamento dei tuoi dati violi il Regolamento, puoi
+        proporre reclamo al
+        <a href="https://www.garanteprivacy.it" target="_blank" rel="noreferrer" class="font-semibold text-primary hover:underline">Garante per la protezione dei dati personali</a>
+        (Piazza Venezia 11, 00187 Roma) o rivolgerti all'autorità giudiziaria.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">9. Processi decisionali automatizzati</h2>
+      <p class="mt-3">
+        Non effettuiamo profilazione né processi decisionali automatizzati che
+        producano effetti giuridici nei tuoi confronti.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold uppercase tracking-wide text-foreground">10. Modifiche a questa informativa</h2>
+      <p class="mt-3">
+        Questa informativa può essere aggiornata per adeguarla a modifiche del
+        sito, dei fornitori utilizzati o della normativa. La versione pubblicata
+        su questa pagina è sempre quella vigente; la data in alto indica
+        l'ultimo aggiornamento.
+      </p>
+    </section>
+  </div>
+</main>
+</Base>

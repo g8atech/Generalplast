@@ -1,0 +1,38 @@
+/* Identità visiva del cliente.
+   È l'unico file da toccare per ritingere il sito su un altro marchio. */
+:root {
+  --radius: 0.25rem;
+
+  --background: oklch(100% 0 0);
+  --foreground: oklch(19% 0.012 250);
+
+  --primary: oklch(53% 0.221 27.5);
+  --primary-foreground: oklch(99% 0 0);
+
+  --muted: oklch(96% 0.004 250);
+  --muted-foreground: oklch(50% 0.016 250);
+
+  --steel: oklch(22% 0.014 250);
+  --steel-foreground: oklch(98% 0 0);
+
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(19% 0.012 250);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(19% 0.012 250);
+  --secondary: oklch(22% 0.014 250);
+  --secondary-foreground: oklch(98% 0 0);
+  --accent: oklch(95% 0.02 250);
+  --accent-foreground: oklch(22% 0.014 250);
+  --destructive: oklch(57.7% 0.245 27.325);
+  --destructive-foreground: oklch(98.4% 0.003 247.858);
+
+  --border: oklch(92.9% 0.013 255.508);
+  --input: oklch(92.9% 0.013 255.508);
+  --ring: oklch(70.4% 0.04 256.788);
+
+  --gradient-hero: linear-gradient(120deg, oklch(19% 0.012 250 / 0.92) 0%, oklch(19% 0.012 250 / 0.55) 55%, oklch(53% 0.221 27.5 / 0.35) 100%);
+  --gradient-accent: linear-gradient(100deg, oklch(53% 0.221 27.5), oklch(62% 0.2 33));
+
+  --shadow-card: 0 18px 45px -25px oklch(19% 0.012 250 / 0.55);
+  --shadow-strong: 0 30px 70px -35px oklch(19% 0.012 250 / 0.7);
+}

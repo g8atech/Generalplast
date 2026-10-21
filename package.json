@@ -1,0 +1,24 @@
+{
+  "name": "g8a-site-template",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Template siti clienti G8A — istanza: Generalplast",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:interactions": "node tools/check-interactions.cjs",
+    "check:visual": "OUT=/tmp/cmp node tools/compare.cjs && python3 tools/diff.py /tmp/cmp"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^5.18.2",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.56.1",
+    "pngjs": "^7.0.0",
+    "pixelmatch": "^7.1.0"
+  }
+}

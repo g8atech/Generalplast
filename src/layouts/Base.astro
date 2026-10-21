@@ -1,0 +1,75 @@
+---
+import site from "../config/site.json";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  preload?: string[];
+}
+const { title, description, ogTitle, ogDescription, preload = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.site.url).href;
+const org = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.brand.legalName,
+  url: site.site.url,
+  telephone: site.contact.phone,
+  faxNumber: site.contact.fax,
+  email: site.contact.email,
+  vatID: site.contact.vat,
+  foundingDate: String(site.brand.foundedYear),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.contact.street,
+    postalCode: site.contact.postalCode,
+    addressLocality: site.contact.city,
+    addressRegion: site.contact.region,
+    addressCountry: site.contact.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.contact.latitude,
+    longitude: site.contact.longitude,
+  },
+};
+---
+
+<!doctype html>
+<html lang={site.site.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.site.locale} />
+    <meta property="og:url" content={canonical} />
+    {ogTitle && <meta property="og:title" content={ogTitle} />}
+    {ogDescription && <meta property="og:description" content={ogDescription} />}
+    <meta property="og:image" content={new URL("/og.png", site.site.url).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="author" content={site.brand.legalName} />
+{
+      /* I font sono serviti dal dominio: nessuna richiesta a terzi,
+         quindi niente trasferimento dell'IP del visitatore. */
+    }
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-800-latin.woff2" crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400-latin.woff2" crossorigin="anonymous" />
+    {preload.map((href) => <link rel="preload" as="image" href={href} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(org)} />
+  </head>
+  <body>
+    <div class="min-h-screen bg-background">
+      <Header />
+      <slot />
+      <Footer />
+    </div>
+  </body>
+</html>

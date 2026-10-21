@@ -1,0 +1,74 @@
+{
+  "site": {
+    "url": "https://generalplast.it",
+    "lang": "it",
+    "locale": "it_IT"
+  },
+  "brand": {
+    "name": "GENERALPLAST",
+    "legalName": "Generalplast Srl",
+    "logo": "/logo.png",
+    "logoAlt": "Generalplast",
+    "footerText": "Dal 1968 stampaggio ed estrusione di articoli in plastica per l'edilizia civile, industriale e per il conto terzi.",
+    "foundedYear": 1968,
+    "credit": {
+      "label": "G8A Technology SRL",
+      "url": "https://www.g8a.it/"
+    }
+  },
+  "contact": {
+    "phone": "0331 217419",
+    "phoneHref": "tel:+390331217419",
+    "fax": "0331 216048",
+    "email": "info@generalplast.it",
+    "addressLine": "Via Giambello, 5 — 21040 Jerago con Orago (VA)",
+    "street": "Via Giambello, 5",
+    "postalCode": "21040",
+    "city": "Jerago con Orago",
+    "region": "VA",
+    "country": "IT",
+    "latitude": 45.7050391,
+    "longitude": 8.8058676,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJcRD0gRqIhkcR32axAzWtuQs",
+    "vat": "00213590128"
+  },
+  "form": {
+    "provider": "web3forms",
+    "accessKey": "03ebd183-25ee-4946-9b2c-9c887c3f3d0d",
+    "subject": "Nuova richiesta dal sito Generalplast",
+    "fromName": "Sito Generalplast",
+    "successTitle": "Richiesta inviata",
+    "successText": "Ti risponderemo al più presto.",
+    "errorTitle": "Invio non riuscito",
+    "errorText": "Riprova tra poco oppure chiamaci allo 0331 217419.",
+    "sendingLabel": "Invio in corso…",
+    "submitLabel": "Invia"
+  },
+  "nav": {
+    "catalogUrl": "https://anyflip.com/rswwi/uyga"
+  },
+  "privacy": {
+    "updatedAt": "21 ottobre 2026",
+    "retentionMonths": 24,
+    "processors": [
+      {
+        "name": "Vercel Inc.",
+        "role": "Hosting del sito e registri tecnici di accesso",
+        "country": "Stati Uniti",
+        "note": "Fornitore dell'infrastruttura su cui il sito è pubblicato."
+      },
+      {
+        "name": "Web3Creative (Web3Forms)",
+        "role": "Ricezione e inoltro dei messaggi del modulo contatti",
+        "country": "India, con infrastruttura su AWS, Cloudflare e Hetzner",
+        "note": "Trattamento regolato da accordo che incorpora le Clausole Contrattuali Tipo approvate dalla Commissione europea."
+      },
+      {
+        "name": "G8A Technology S.r.l.",
+        "role": "Gestione tecnica del sito e delle caselle di posta",
+        "country": "Italia",
+        "note": "Fornitore informatico nominato responsabile del trattamento."
+      }
+    ]
+  }
+}

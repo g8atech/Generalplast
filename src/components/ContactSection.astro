@@ -1,0 +1,76 @@
+---
+import site from "../config/site.json";
+interface Bullet { svg: string; text: string }
+const { bullets } = Astro.props as { bullets: Bullet[] };
+---
+<section id="contatti" class="scroll-mt-24 bg-steel py-24 text-steel-foreground"><div class="container-page grid gap-14 lg:grid-cols-2 lg:items-start"><div><p class="eyebrow">Parliamone</p><h2 class="mt-4 text-4xl font-extrabold uppercase leading-[1.05] sm:text-5xl">Contattaci per<br/>informazioni e preventivi</h2><ul class="mt-10 space-y-6">{bullets.map((b) => (
+  <li class="flex items-start gap-4">
+    <span class="mt-0.5 grid size-10 shrink-0 place-items-center rounded-sm bg-[image:var(--gradient-accent)]"><Fragment set:html={b.svg} /></span>
+    <span class="text-lg text-steel-foreground/85">{b.text}</span>
+  </li>
+))}</ul></div><form id="contact-form" class="rounded-md bg-background p-8 text-foreground shadow-[var(--shadow-strong)]"><input type="checkbox" tabindex="-1" autocomplete="off" class="hidden" style="display:none" name="botcheck"/><div class="grid gap-4 sm:grid-cols-2"><div><label class="mb-1.5 block font-display text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Nome</label><input type="text" required class="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20" name="nome"/></div><div><label class="mb-1.5 block font-display text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Azienda</label><input type="text" class="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20" name="azienda"/></div><div><label class="mb-1.5 block font-display text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Email</label><input type="email" required class="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20" name="email"/></div><div><label class="mb-1.5 block font-display text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Telefono</label><input type="tel" class="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20" name="telefono"/></div></div><div class="mt-4"><label class="mb-1.5 block font-display text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Messaggio</label><textarea name="messaggio" rows="5" required maxlength="2000" class="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"></textarea></div><label class="mt-4 flex items-start gap-3 text-sm text-muted-foreground"><input type="checkbox" required class="mt-0.5 size-4 accent-primary" name="privacy"/><span>Ho letto e accetto l&#x27;<a href="/privacy" target="_blank" class="font-semibold text-primary underline">informativa sulla privacy</a></span></label><button type="submit" class="mt-6 w-full rounded-sm bg-[image:var(--gradient-accent)] px-6 py-3.5 font-display text-sm font-bold uppercase tracking-[0.18em] text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-70">{site.form.submitLabel}</button></form></div></section>
+
+<div class="toaster" id="toaster" aria-live="polite"></div>
+
+<script define:vars={{ cfg: site.form }}>
+  const form = document.getElementById("contact-form");
+  const toaster = document.getElementById("toaster");
+
+  function toast(title, text) {
+    const el = document.createElement("div");
+    el.className = "toast";
+    const t = document.createElement("strong");
+    t.textContent = title;
+    const s = document.createElement("span");
+    s.textContent = text;
+    el.append(t, s);
+    toaster.append(el);
+    requestAnimationFrame(() => el.setAttribute("data-show", "1"));
+    setTimeout(() => {
+      el.removeAttribute("data-show");
+      setTimeout(() => el.remove(), 300);
+    }, 5000);
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const data = new FormData(form);
+    const get = (k) => String(data.get(k) ?? "");
+
+    btn.disabled = true;
+    const label = btn.textContent;
+    btn.textContent = cfg.sendingLabel;
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: cfg.accessKey,
+          subject: cfg.subject,
+          from_name: cfg.fromName,
+          nome: get("nome"),
+          azienda: get("azienda"),
+          email: get("email"),
+          telefono: get("telefono"),
+          messaggio: get("messaggio"),
+          replyto: get("email"),
+          botcheck: get("botcheck"),
+        }),
+      });
+      const json = await res.json().catch(() => null);
+      if (json && json.success === true) {
+        form.reset();
+        toast(cfg.successTitle, cfg.successText);
+      } else {
+        throw new Error("invio fallito");
+      }
+    } catch {
+      toast(cfg.errorTitle, cfg.errorText);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = label;
+    }
+  });
+</script>
