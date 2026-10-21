@@ -23,11 +23,13 @@ const MIME = {
 
 function serve() {
   return http.createServer((req, res) => {
-    let p = decodeURIComponent(req.url.split("?")[0]);
-    let file = path.join(DIST, p);
-    if (p === "/") file = path.join(DIST, "index.html");
-    else if (!path.extname(file)) file += ".html";
-    if (!fs.existsSync(file)) { res.writeHead(404); return res.end("404"); }
+    const p = decodeURIComponent(req.url.split("?")[0]);
+    // Risolve come Vercel: prima la cartella, poi il file .html.
+    const candidates = path.extname(p)
+      ? [path.join(DIST, p)]
+      : [path.join(DIST, p, "index.html"), path.join(DIST, p + ".html")];
+    const file = candidates.find((f) => fs.existsSync(f));
+    if (!file) { res.writeHead(404); return res.end("404"); }
     res.writeHead(200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream" });
     fs.createReadStream(file).pipe(res);
   }).listen(PORT);

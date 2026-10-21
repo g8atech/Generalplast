@@ -11,11 +11,13 @@ const PORT = 4410;
 const MIME = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".png": "image/png", ".jpg": "image/jpeg", ".gif": "image/gif", ".ico": "image/x-icon", ".xml": "application/xml", ".txt": "text/plain" };
 
 const srv = http.createServer((q, r) => {
-  let p = q.url.split("?")[0];
-  let f = path.join(DIST, p);
-  if (p === "/") f = path.join(DIST, "index.html");
-  else if (!path.extname(f)) f += ".html";
-  if (!fs.existsSync(f)) { r.writeHead(404); return r.end(); }
+  const p = q.url.split("?")[0];
+  // Risolve come Vercel: prima la cartella, poi il file .html.
+  const candidates = path.extname(p)
+    ? [path.join(DIST, p)]
+    : [path.join(DIST, p, "index.html"), path.join(DIST, p + ".html")];
+  const f = candidates.find((x) => fs.existsSync(x));
+  if (!f) { r.writeHead(404); return r.end(); }
   r.writeHead(200, { "Content-Type": MIME[path.extname(f)] || "application/octet-stream" });
   fs.createReadStream(f).pipe(r);
 }).listen(PORT);
