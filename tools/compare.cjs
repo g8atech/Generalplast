@@ -65,7 +65,10 @@ async function shoot(page, url, file) {
   });
   await page.waitForTimeout(400);
   const boxes = await page.evaluate(() =>
-    [...document.querySelectorAll('img[src$=".gif"]')].map((i) => {
+    [...document.querySelectorAll(
+      // immagini animate: non si fermano, quindi le loro aree si escludono.
+      'img[src$=".gif"], img[src*="collaudo"], img[src*="stampaggio."], img[src*="estrusione"]'
+    )].map((i) => {
       const r = i.getBoundingClientRect();
       return [
         Math.floor(r.left + window.scrollX) - 2,

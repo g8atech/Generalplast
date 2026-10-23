@@ -40,6 +40,55 @@ npm run build                # genera dist/
 node tools/check-interactions.cjs   # form, menu, navigazione
 ```
 
+## Immagini
+
+Gli originali stanno in `sorgenti/`, **fuori dalla cartella pubblicata**. In
+`public/` finiscono solo le versioni generate: ridimensionate alla misura in
+cui vengono davvero mostrate e convertite in WebP.
+
+```bash
+python3 tools/ottimizza-immagini.py          # genera quelle mancanti
+python3 tools/ottimizza-immagini.py --tutte  # rigenera tutto
+```
+
+La larghezza di destinazione è il doppio di quella di visualizzazione: su
+schermi ad alta densità non si vede differenza, e si evita di servire un file
+da 2048 px dentro un riquadro da 560. Le gif animate diventano WebP animato,
+a parità di fotogrammi e velocità.
+
+Tre cose imparate facendolo:
+
+- **Dichiarare sempre `width` e `height`** sulle immagini a caricamento
+  differito. Senza, finché il file non arriva l'elemento occupa altezza zero e
+  al caricamento il contenuto sottostante salta.
+- **Precaricare solo l'immagine che determina il primo rendering.** Il
+  precaricamento è una richiesta di massima priorità: dichiararne sei
+  significa bloccare la pagina su tutte e sei prima di mostrare qualcosa.
+- **Il percorso del logo sta in `site.json`**, non nel markup: va aggiornato
+  anche lì quando cambia l'estensione, o il logo a piè di pagina si rompe in
+  silenzio.
+
+Alzare la qualità oltre un certo punto non avvicina il risultato all'originale:
+la differenza residua che si misura confrontando le schermate viene dal
+ridimensionamento, non dalla compressione, ed è invisibile a grandezza reale.
+
+## Icone del sito
+
+```bash
+python3 tools/genera-favicon.py sorgenti/logo.png --colore "#c72026"
+```
+
+Il logo di un'azienda è quasi sempre orizzontale e a 16 px diventa
+illeggibile. Lo strumento isola il solo marchio — scarta scritte, ® e
+frammenti tenendo la forma principale — e lo monta in bianco su un quadrato
+del colore aziendale, che in una barra di schede si distingue molto meglio di
+una forma sottile su fondo trasparente. Produce `favicon.ico` (16/32/48, ogni
+misura disegnata alla sua risoluzione), `icon-192`, `icon-512` e
+`apple-touch-icon`.
+
+Se il ritaglio automatico prende anche parte della scritta, si limita l'area
+con `--ritaglio x1,y1,x2,y2`.
+
 ## Le tre verifiche
 
 Sono indipendenti e servono a cose diverse. Prima di ogni pubblicazione

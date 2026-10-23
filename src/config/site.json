@@ -7,7 +7,9 @@
   "brand": {
     "name": "GENERALPLAST",
     "legalName": "Generalplast Srl",
-    "logo": "/logo.png",
+    "logo": "/logo.webp",
+    "logoWidth": 900,
+    "logoHeight": 232,
     "logoAlt": "Generalplast",
     "footerText": "Dal 1968 stampaggio ed estrusione di articoli in plastica per l'edilizia civile, industriale e per il conto terzi.",
     "foundedYear": 1968,
