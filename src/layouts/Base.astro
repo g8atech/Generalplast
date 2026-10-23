@@ -57,7 +57,11 @@ const org = {
     <meta property="og:url" content={canonical} />
     {ogTitle && <meta property="og:title" content={ogTitle} />}
     {ogDescription && <meta property="og:description" content={ogDescription} />}
-    <meta property="og:image" content={new URL("/og.png", site.site.url).href} />
+    <meta property="og:image" content={new URL("/og.jpg", site.site.url).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.brand.legalName} — reparto produttivo`} />
+    <meta property="og:site_name" content={site.brand.legalName} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="author" content={site.brand.legalName} />
     {site.verification.google && <meta name="google-site-verification" content={site.verification.google} />}

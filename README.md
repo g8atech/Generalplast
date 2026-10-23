@@ -89,6 +89,51 @@ misura disegnata alla sua risoluzione), `icon-192`, `icon-512` e
 Se il ritaglio automatico prende anche parte della scritta, si limita l'area
 con `--ritaglio x1,y1,x2,y2`.
 
+## Anteprima per le condivisioni
+
+```bash
+python3 tools/genera-og.py --sfondo sorgenti/hero.png --logo sorgenti/logo.png \
+  --testo "Stampaggio e lavorazione materie plastiche dal 1968"
+```
+
+Produce `public/og.jpg` (1200×630): è l'immagine che compare quando il link
+viene incollato in WhatsApp, LinkedIn o in una mail. Senza, il link appare
+nudo. Va rigenerata se cambiano logo o claim.
+
+## Intestazioni di sicurezza
+
+Stanno in `vercel.json` e valgono per tutto il sito: `Content-Security-Policy`,
+`X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`,
+`Permissions-Policy`.
+
+**La politica di sicurezza va collaudata prima di pubblicarla.** Se è troppo
+stretta blocca la chiamata del form, e il sito sembra funzionare mentre le
+richieste non partono: in produzione te ne accorgi dai lead che non arrivano.
+
+```bash
+npm run build && node tools/prova-csp.cjs
+```
+
+Serve il sito costruito applicando davvero le intestazioni di `vercel.json`,
+carica ogni pagina, invia il form e segnala qualsiasi cosa venga bloccata.
+Da rieseguire ogni volta che si tocca la politica o si aggiunge un servizio
+esterno.
+
+## Collaudo prima della consegna
+
+```bash
+SITO=https://generalplast.it node tools/collaudo.cjs
+```
+
+Controlla sul sito pubblicato: lunghezza di titoli e descrizioni, indirizzo
+canonico, lingua, un solo H1, gerarchia dei titoli senza salti, testi
+alternativi, campi del modulo con etichetta associata, dati strutturati,
+link interni ed esterni raggiungibili, risorse mancanti, errori in console,
+titoli e descrizioni non duplicati fra pagine.
+
+Nota: `garanteprivacy.it` risponde 403 alle richieste automatiche. È un falso
+positivo, il link funziona da browser.
+
 ## Le tre verifiche
 
 Sono indipendenti e servono a cose diverse. Prima di ogni pubblicazione
