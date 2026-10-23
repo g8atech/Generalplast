@@ -40,6 +40,48 @@ npm run build                # genera dist/
 node tools/check-interactions.cjs   # form, menu, navigazione
 ```
 
+## Le tre verifiche
+
+Sono indipendenti e servono a cose diverse. Prima di ogni pubblicazione
+importante vanno eseguite tutte e tre.
+
+| | Risponde a | Quando serve |
+|---|---|---|
+| `verifica-richieste.cjs` | Le modifiche chieste dal cliente sono state recepite? | Sempre |
+| `check-interactions.cjs` | Form, menu e navigazione funzionano? | Sempre |
+| `compare.cjs` + `diff.py` | La resa coincide con un riferimento? | Quando si rifà un sito esistente |
+
+Le prime due bastano a sé stesse. La terza richiede un sito di riferimento
+con cui confrontarsi e serve soprattutto durante una migrazione.
+
+Nota: **nessuna delle prime due sa cosa il cliente aveva chiesto**, e il
+confronto visivo nemmeno. Se una richiesta non fosse stata recepita nel sito
+di partenza, verrebbe copiata fedelmente sbagliata e tutti i controlli
+passerebbero lo stesso. È per questo che `richieste-cliente.json` esiste: si
+scrive a mano dal documento del cliente, ed è l'unico controllo che guarda
+all'origine invece che alla copia.
+
+## Verifica delle richieste del cliente
+
+`tools/richieste-cliente.json` elenca, pagina per pagina, i testi che devono
+comparire (`atteso`) e quelli che devono essere spariti (`assente`).
+`tools/verifica-richieste.cjs` li controlla sul sito costruito.
+
+```bash
+npm run build && node tools/verifica-richieste.cjs
+```
+
+Due accortezze imparate sul campo:
+
+- `"intero": true` cerca la parola per intero. Senza, la sigla `PLA`
+  corrisponde dentro «**pla**stica» e segnala un errore inesistente.
+- `"zona": "nav"` limita il controllo a header, main o footer. Serve quando
+  una parola è legittima altrove — «Catalogo» non deve più essere una voce di
+  menu, ma resta giusta dentro il link alla tendina.
+
+Per un nuovo cliente la lista si riscrive dal suo elenco di modifiche. È
+mezz'ora di lavoro e da lì in poi ogni pubblicazione si ricontrolla da sola.
+
 ## Verifica visiva
 
 `tools/compare.cjs` fotografa il sito ricostruito e quello di riferimento sulle
@@ -48,11 +90,25 @@ per pixel. Le aree occupate da GIF animate vengono escluse: altrimenti si
 misurerebbe l'animazione invece del layout.
 
 ```bash
-OUT=/tmp/cmp node tools/compare.cjs && python3 tools/diff.py /tmp/cmp
+LIVE=https://sito-di-riferimento OUT=/tmp/cmp node tools/compare.cjs
+python3 tools/diff.py /tmp/cmp
 ```
 
-Serve quando si rifà un sito esistente e il risultato deve coincidere, e come
-rete di sicurezza prima di ogni pubblicazione.
+Con `NEW` confronta un indirizzo pubblicato invece della build locale: serve a
+verificare la produzione, dove emergono cose che in locale non si vedono.
+
+`tools/diff-testi.cjs` affianca invece il **testo visibile** di due indirizzi,
+parola per parola. Il confronto a schermate non intercetta una modifica fatta
+sul sito di riferimento dopo la copia, perché confronta sempre contro la
+versione corrente di quel sito.
+
+```bash
+REF=https://riferimento MINE=https://nostro node tools/diff-testi.cjs
+```
+
+Nessuno dei due ha un indirizzo predefinito: il sito di riferimento di una
+migrazione va spento una volta finita, e uno strumento che ci punta da solo
+smetterebbe di funzionare senza dirlo.
 
 ## Form contatti
 

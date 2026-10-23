@@ -6,7 +6,7 @@ const path = require("path");
 
 const DIST = path.join(__dirname, "..", "dist");
 const OUT = process.env.OUT || "/tmp/cmp";
-const LIVE = process.env.LIVE || "https://plastic-reimagined-modern.vercel.app";
+const LIVE = process.env.LIVE;  // indirizzo di riferimento, obbligatorio
 // Con NEW si confronta un deploy remoto invece della build locale.
 const NEW = process.env.NEW || null;
 const PORT = 4399;
@@ -80,6 +80,14 @@ async function shoot(page, url, file) {
 }
 
 (async () => {
+  if (!LIVE) {
+    console.error(
+      "Serve LIVE: l'indirizzo con cui confrontare.\n" +
+      "  LIVE=https://sito-di-riferimento OUT=/tmp/cmp node tools/compare.cjs\n" +
+      "Con NEW si confronta un deploy invece della build locale."
+    );
+    process.exit(2);
+  }
   fs.mkdirSync(OUT, { recursive: true });
   const server = serve();
   const browser = await chromium.launch({

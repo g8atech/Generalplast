@@ -3,8 +3,8 @@
 // riferimento cambia dopo la copia, le differenze di testo vanno trovate qui.
 const { chromium } = require("playwright-core");
 
-const REF = process.env.REF || "https://plastic-reimagined-modern.vercel.app";
-const MINE = process.env.MINE || "https://generalplast.vercel.app";
+const REF = process.env.REF;  // indirizzo di riferimento, obbligatorio
+const MINE = process.env.MINE;  // indirizzo da controllare, obbligatorio
 const ROUTES = (process.env.ROUTES || "/,/lavorazione-produzione,/stampaggio-conto-terzi").split(",");
 
 async function textOf(page, url) {
@@ -50,6 +50,10 @@ function lcsDiff(a, b) {
 }
 
 (async () => {
+  if (!REF || !MINE) {
+    console.error("Servono REF e MINE: REF=https://riferimento MINE=https://nostro node tools/diff-testi.cjs");
+    process.exit(2);
+  }
   const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
   const page = await (await b.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
   let totale = 0;
