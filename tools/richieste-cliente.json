@@ -1,0 +1,314 @@
+{
+  "fonte": "generaplast.docx — elenco modifiche inviato dal cliente",
+  "nota": "Ogni voce indica un testo che deve comparire nella pagina. 'assente' elenca invece testi che NON devono esserci più. 'intero' cerca la parola per intero (necessario per le sigle: PLA corrisponderebbe dentro 'plastica'). 'zona' limita il controllo a header, main o footer.",
+  "controlli": [
+    {
+      "pagina": "/",
+      "rif": "doc 2",
+      "atteso": "Stampaggio e lavorazione"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 2",
+      "atteso": "materie plastiche"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 3",
+      "atteso": "Produzione propria di articoli stampati a iniezione"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 3",
+      "atteso": "stampaggio conto terzi di componenti tecnici in materiale termoplastico"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 5",
+      "atteso": "Stampaggio e lavorazione articoli edilizia"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 6",
+      "atteso": "Stampaggio e lavorazione conto terzi"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 8",
+      "atteso": "Prodotti edilizia"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 10",
+      "atteso": "La Nostra Produzione"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 11",
+      "atteso": "Apri Catalogo edilizia stampaggio ed estrusione"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 8",
+      "zona": "nav",
+      "nota": "la voce di menu non deve più chiamarsi Catalogo; il link in tendina sì",
+      "atteso": "Prodotti edilizia"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 13",
+      "atteso": "17"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 13/22",
+      "atteso": "17 presse a iniezione di ultima generazione"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 13",
+      "assente": "19 presse"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 15",
+      "atteso": "fondata nel 1968, è da sempre specializzata nello stampaggio"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 16",
+      "atteso": "Framarin Emilio & Figli Snc ha ampliato i nostri orizzonti produttivi"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 17",
+      "atteso": "due anime sinergiche"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 18",
+      "atteso": "Stampaggio articoli edilizia"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 18",
+      "atteso": "Stampaggio conto terzi"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 18",
+      "atteso": "Estrusione"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 20",
+      "atteso": "imballi al 70% di materiale riciclato"
+    },
+    {
+      "pagina": "/",
+      "rif": "doc 58",
+      "atteso": "P.IVA 00213590128"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 24",
+      "atteso": "Stampaggio ed estrusione di articoli in plastica per l'edilizia"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 25",
+      "atteso": "unisce la tecnologia dello stampaggio a iniezione"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 25",
+      "atteso": "soluzioni standard e personalizzate per il settore civile e industriale"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 25",
+      "assente": "si suddivide in due settori"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 26",
+      "atteso": "Articoli e componenti in materiale termoplastico per sistemi edili"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 27",
+      "atteso": "In un'ottica di economia circolare"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 27",
+      "atteso": "esclusivamente plastica di seconda vita"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 28",
+      "atteso": "Spedizioni rapide in tutta Italia"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 28",
+      "atteso": "consegne dirette con mezzo aziendale"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 29",
+      "atteso": "Catalogo 2026"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 29",
+      "assente": "Catalogo 2025"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 51",
+      "atteso": "Spedizioni rapide in tutta Italia e consegne dirette con mezzo aziendale"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 52",
+      "atteso": "Articoli ecosostenibili realizzati al 100% con plastica di seconda vita"
+    },
+    {
+      "pagina": "/lavorazione-produzione",
+      "rif": "doc 53",
+      "atteso": "Gamma completa di soluzioni standard e personalizzate per il cantiere"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 32",
+      "atteso": "oltre 55 anni di storia nel settore della trasformazione delle materie plastiche"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 32",
+      "atteso": "medicale, elettrodomestico, elettronico, automotive e macchine del caffè"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 32",
+      "atteso": "tecnopolimeri certificati"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 36",
+      "atteso": "Consulenza e co-design"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 37",
+      "atteso": "Dallo studio di fattibilità alla scelta dei materiali più idonei"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 38",
+      "atteso": "Prototipazione e costruzione stampi"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 39",
+      "atteso": "transizione dal disegno al pezzo reale"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 40",
+      "atteso": "Collaudo e campionature"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 41",
+      "atteso": "rivolto anche a stampisti esterni"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 42",
+      "atteso": "Stampaggio ad iniezione"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 43",
+      "atteso": "17 presse ad iniezione di ultima generazione"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 43",
+      "atteso": "da 06 T per il microstampaggio fino a 400 T"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 43",
+      "atteso": "DEMAG e HAITIAN"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 44",
+      "atteso": "Lavorazioni e servizi accessori"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 45",
+      "atteso": "saldatura ad ultrasuoni, cromature, dorature, serigrafie e verniciature"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 46",
+      "atteso": "cariche in fibra di vetro, sfere di vetro, teflon, carbonio e acciaio"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 47",
+      "atteso": "PA12",
+      "intero": true
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 47",
+      "assente": "PA46",
+      "intero": true
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 47",
+      "assente": "PEEK",
+      "intero": true
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 47",
+      "assente": "PAEK",
+      "intero": true
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 47",
+      "assente": "LCP",
+      "intero": true
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 47",
+      "assente": "PLA",
+      "intero": true
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 55",
+      "atteso": "Risposte rapide e logistica flessibile con mezzo aziendale"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 56",
+      "atteso": "Co-design e supporto tecnico in ogni fase della realizzazione"
+    },
+    {
+      "pagina": "/stampaggio-conto-terzi",
+      "rif": "doc 57",
+      "atteso": "Soluzioni di stampaggio su misura per ogni settore industriale"
+    }
+  ]
+}
