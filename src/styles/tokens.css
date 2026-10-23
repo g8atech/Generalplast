@@ -8,6 +8,9 @@
 
   --primary: oklch(53% 0.221 27.5);
   --primary-foreground: oklch(99% 0 0);
+  /* Stesso colore, solo più chiaro: sul fondo scuro il rosso di marchio
+     si ferma a 2,97:1, sotto il minimo leggibile per il testo piccolo. */
+  --primary-su-scuro: oklch(65% 0.221 27.5);
 
   --muted: oklch(96% 0.004 250);
   --muted-foreground: oklch(50% 0.016 250);

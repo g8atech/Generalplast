@@ -63,6 +63,16 @@ async function shoot(page, url, file) {
       step();
     });
   });
+  // Con il caricamento differito un'immagine può non aver ancora finito di
+  // dipingersi quando si scatta: il confronto segnalerebbe una differenza
+  // che non esiste. Si aspetta che siano tutte complete.
+  await page
+    .waitForFunction(
+      () => [...document.querySelectorAll("img")].every((i) => i.complete && i.naturalWidth > 0),
+      null,
+      { timeout: 20000 },
+    )
+    .catch(() => console.log("   (qualche immagine non si è completata entro il tempo)"));
   await page.waitForTimeout(400);
   const boxes = await page.evaluate(() =>
     [...document.querySelectorAll(

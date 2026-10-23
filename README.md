@@ -119,6 +119,37 @@ carica ogni pagina, invia il form e segnala qualsiasi cosa venga bloccata.
 Da rieseguire ogni volta che si tocca la politica o si aggiunge un servizio
 esterno.
 
+## Contrasto del testo
+
+```bash
+npm run build && node tools/contrasto.cjs
+SITO=https://generalplast.it node tools/contrasto.cjs
+```
+
+Misura il contrasto fra testo e sfondo sulle combinazioni reali e segnala
+quelle sotto la soglia di leggibilità (4,5:1 per il testo normale, 3:1 per
+quello grande).
+
+Due cose che rendono il risultato attendibile e che altrimenti producono
+numeri falsi:
+
+- i colori sono dichiarati in `oklch`, e il browser li restituisce in quel
+  formato: leggerli come se fossero `rgb` dà valori senza senso. Lo strumento
+  li fa convertire al browser stesso, dipingendoli su una tela e rileggendone
+  i byte;
+- il testo sopra una fotografia viene escluso, perché lì il contrasto dipende
+  dall'immagine e va giudicato a occhio, non calcolato.
+
+Il tema ha `--primary-su-scuro`: il rosso di marchio su fondo scuro si ferma a
+2,97:1, insufficiente per un testo da 12 px, quindi nelle sezioni scure le
+etichette usano la stessa tinta più chiara.
+
+## Pagina di errore
+
+`src/pages/404.astro` genera la pagina mostrata quando un indirizzo non
+esiste. Senza, Vercel ne serve una in inglese, senza grafica e senza modo di
+tornare al sito.
+
 ## Collaudo prima della consegna
 
 ```bash

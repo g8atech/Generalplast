@@ -1,0 +1,52 @@
+---
+import Base from "../layouts/Base.astro";
+import site from "../config/site.json";
+
+const { brand, contact } = site;
+
+const scorciatoie = [
+  { href: "/", titolo: "Home", testo: "Chi siamo e cosa produciamo" },
+  { href: "/lavorazione-produzione", titolo: "Prodotti edilizia", testo: "Stampaggio ed estrusione per il settore civile e industriale" },
+  { href: "/stampaggio-conto-terzi", titolo: "Stampaggio conto terzi", testo: "Articoli tecnici su misura per ogni settore industriale" },
+];
+---
+
+<Base
+  title={`Pagina non trovata | ${brand.legalName}`}
+  description="La pagina cercata non esiste o è stata spostata."
+>
+<main class="container-page max-w-3xl pb-24 pt-36">
+  <p class="eyebrow">Errore 404</p>
+  <h1 class="mt-4 text-4xl font-extrabold uppercase sm:text-5xl">Pagina non trovata</h1>
+  <p class="mt-6 text-lg leading-relaxed text-muted-foreground">
+    L'indirizzo che hai aperto non esiste o è stato spostato. Da qui puoi
+    tornare alle pagine principali, oppure scriverci direttamente.
+  </p>
+
+  <ul class="mt-10 grid gap-4">
+    {scorciatoie.map((s) => (
+      <li>
+        <a
+          href={s.href}
+          class="block rounded-sm border border-border p-5 transition-shadow hover:shadow-[var(--shadow-card)]"
+        >
+          <span class="font-display text-sm font-bold uppercase tracking-[0.12em] text-primary">{s.titolo}</span>
+          <span class="mt-1 block text-sm text-muted-foreground">{s.testo}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <div class="mt-10 flex flex-wrap items-center gap-4">
+    <a
+      href="/#contatti"
+      class="rounded-sm bg-[image:var(--gradient-accent)] px-6 py-3.5 font-display text-sm font-bold uppercase tracking-[0.18em] text-primary-foreground transition-transform hover:-translate-y-0.5"
+    >
+      Contattaci
+    </a>
+    <a href={contact.phoneHref} class="font-display text-sm font-semibold uppercase tracking-[0.14em] text-primary hover:underline">
+      {contact.phone}
+    </a>
+  </div>
+</main>
+</Base>

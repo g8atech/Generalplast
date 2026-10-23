@@ -53,6 +53,11 @@
   }
   /* Nel livello base, così una utility di colore sul singolo elemento
      continua a prevalere come nel sito originale. */
+  /* Nelle sezioni scure il rosso di marchio non ha contrasto sufficiente
+     per un testo da 12 px: si usa la variante più chiara. */
+  .bg-steel .eyebrow {
+    color: var(--primary-su-scuro);
+  }
   .eyebrow {
     font-family: var(--font-display);
     letter-spacing: 0.22em;
